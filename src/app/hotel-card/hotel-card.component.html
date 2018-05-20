@@ -1,0 +1,35 @@
+<div class="hotel-card">
+  <div class="hotel-card__image-container">
+    <i class="far fa-heart"></i>
+    <img src="{{ item.image }}" class="img-fluid hotel-card__image-{{i}}">
+    <p class="hotel-card__countDown">
+      <span>Hurry up!</span>
+      <i class="far fa-clock"></i>
+    </p>
+  </div>
+  <div class="hotel-card-content__container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="hotel-card-content__item-info item-{{i}}">
+          <h3 class="hotel-card__item-location">{{ item.destinationName }}</h3>
+          <p class="hotel-card__item-title">{{ item.name }}</p>
+          <p class="hotel-card__item-description">{{ item.shortDesc }}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="hotel-card__item-prices item-{{i}}">
+          <span class="hotel-card__item-discount">{{ item.discount + '%' }}</span>
+          <p class="hotel-card__item-price-info">{{item.pricePreLabel}}
+            <span class="hotel-card__item-price-number">{{ item.price + '€'}}</span>
+            <br> {{item.pricePostLabel}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="arrow-container">
+          <i class="fas fa-chevron-circle-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
