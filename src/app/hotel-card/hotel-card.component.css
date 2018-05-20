@@ -111,8 +111,11 @@
 }
 
 /* ============= MEDIA QUERIES ============= */
-/* @media (max-width: 1200px) {
-  . {
+@media only screen and (max-width: 765px){
+  .arrow-container, .hotel-card__item-description {
     display: none;
   }
-} */
+  .hotel-card__item-prices {
+    display: inline-block;
+  }
+}
