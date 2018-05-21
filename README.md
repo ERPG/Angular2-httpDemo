@@ -1,4 +1,5 @@
 # HotelsFinder
+This is a Small demo using the HTTP request service of Angular 2, there is one update on Angular 5 called HTTPClient but in this demo we are going to use the previous one. If you are using the old HTTP service do not worry, there is no need to update or change the code, this will still work fine. There is also some examples of unit tests.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
