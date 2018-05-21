@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { HotelListService } from './../services/hotel-list.service';
@@ -37,12 +38,12 @@ describe('HotelsListingComponent', () => {
   });
 
   it('should create', () => {
-    // console.log(component.listHotels);
-    // console.log('< ======================= 2 ======================== >');
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
-  // it('should return an Array of requests', () => {
-  //   expect(component).toBeTruthy();
-  // });
+
+  it('should return an Array of requests', () => {
+    component.results = [{}];
+    expect(component.results).toEqual([{}]);
+  });
 });

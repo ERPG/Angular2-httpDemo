@@ -3,23 +3,19 @@
   background: rgb(250,250,250);
 }
 .col-md-6 {
- min-width: 462px;
- height: 301px;
- margin-bottom: 50px;
+  min-width: 462px;
+  max-height: 301px;
+ margin-bottom: 30px;
  margin-top: 15px;
 }
 .col-md-12 {
   min-width: 958px;
   height: 492px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 /* ============= MEDIA QUERIES ============= */
-@media only screen and (min-width: 1200px) {
-  .col-md-6, .col-md-12   {
-    margin-bottom: 80px;
-  }
-}
+@media only screen and (min-width: 1200px) { }
 
 @media only screen and (max-width: 765px) {
   .col-md-6, .col-md-12   {

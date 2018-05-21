@@ -1,7 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
+import { HotelListService } from '../services/hotel-list.service';
 import { HotelCardComponent } from './hotel-card.component';
 import { HotelsListingComponent } from './../hotels-listing/hotels-listing.component';
+
+const item = {
+  name: 'fake_name',
+  image: 'https://back-verychic.orchestra-platform.com/admin/TS/fckUserFiles/Image/HER_grecotel_creta_palace/cretapalace_39.jpg',
+  price: 1,
+  destinationName: 'fake_destination',
+  shortDesc: 'fake_shortDesc',
+  discount: 2,
+  pricePreLabel: 'fake_pricePre',
+  pricePostLabel: 'fake_pricePost',
+};
 
 @Component({ selector: 'app-hotels-listing', template: '' })
 class HotelsListingStubComponent {
@@ -9,12 +21,11 @@ class HotelsListingStubComponent {
   @Input() i;
 }
 
-const item = {
-  name: 'fake_name',
-  image: 'fake_image',
-  price: 'fake_price',
-  destinationName: 'fake_destination'
-};
+class MyHotelListServiceStub {
+  getHotels() {
+    return item;
+  }
+}
 
 describe('HotelCardComponent', () => {
   let component: HotelCardComponent;
@@ -26,6 +37,9 @@ describe('HotelCardComponent', () => {
         HotelCardComponent,
         HotelsListingStubComponent,
         HotelsListingComponent
+      ],
+      providers: [
+        { provide: HotelListService, useClass: MyHotelListServiceStub }
       ]
     })
       .compileComponents();
@@ -41,20 +55,54 @@ describe('HotelCardComponent', () => {
     component.item = item;
     component.i = 1;
 
+    component.ngOnInit();
+
     fixture.detectChanges();
-    console.log(component);
-    console.log('< ========================== 3 ============================= >');
     expect(component).toBeTruthy();
   });
 
-  // it('should contain an image', () => {
-  //   component.item.image = item.image;
-  //   component.i = 1;
+  it('should contain string fake_destination', () => {
+    const elt = fixture.nativeElement.querySelector('h3.hotel-card__item-location');
+    component.item = item;
+    component.i = 1;
 
-  //   fixture.detectChanges();
-  //   const elt = fixture.nativeElement.querySelectorAll('img.hotel-card__image-1');
-  //   console.log(elt);
-  //   console.log('< ========================== 2 ============================= >');
-  //   expect(elt).toContain('fake_image');
-  // });
+    component.ngOnInit();
+
+    fixture.detectChanges();
+    expect(elt.innerText).toContain('FAKE_DESTINATION');
+  });
+
+  it('should contain the fake_name fo the location', () => {
+    const elt = fixture.nativeElement.querySelector('p.hotel-card__item-title');
+    component.item = item;
+    component.i = 1;
+
+    component.ngOnInit();
+
+    fixture.detectChanges();
+    expect(elt.innerText).toContain('fake_name');
+  });
+
+  it('should contain a number related to price', () => {
+    const elt = fixture.nativeElement.querySelector('span.hotel-card__item-price-number');
+    component.item = item;
+    component.i = 1;
+
+    component.ngOnInit();
+
+    fixture.detectChanges();
+
+    expect(elt.innerText).toContain('1€');
+  });
+
+  it('should contain short description', () => {
+    const elt = fixture.nativeElement.querySelector('p.hotel-card__item-description');
+    component.item = item;
+    component.i = 1;
+
+    component.ngOnInit();
+
+    fixture.detectChanges();
+    expect(elt.innerText).toContain('fake_shortDesc');
+  });
 });

@@ -16,10 +16,10 @@ export class HotelsListingComponent implements OnInit {
   }
 
   listHotels() {
+    // Load service
     this.hotelListService
       .getHotels('http://api.verychic.com/verychic-endpoints/v1/products.json?language=fr&currency=EUR&de tailed=false&publishingStatus=nonexpired&size=3',
       (results) => {
-        console.log(results.content);
         this.results = results.content;
       }, (error) => {
         console.log(error);
